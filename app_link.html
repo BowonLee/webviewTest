@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoenixDarts App Link Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .status.checking {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn.secondary {
+            background: #6c757d;
+        }
+
+        .info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .info h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info li {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 14px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .info li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .countdown {
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">🎯</div>
+        <h1>PhoenixDarts</h1>
+        <p class="subtitle">앱 링크 테스트 페이지</p>
+
+        <div id="status" class="status checking">
+            <div class="spinner"></div>
+            <p>앱 확인 중...</p>
+        </div>
+
+        <div id="countdown-container" style="display: none;">
+            <p>앱으로 이동합니다</p>
+            <div class="countdown" id="countdown">3</div>
+        </div>
+
+        <div id="buttons" style="display: none;">
+            <a href="#" id="openApp" class="btn">앱 열기</a>
+            <a href="#" id="openStore" class="btn secondary">스토어로 이동</a>
+        </div>
+
+        <div class="info">
+            <h3>📱 테스트 방법</h3>
+            <ul>
+                <li>앱이 설치되어 있으면 자동으로 앱이 실행됩니다</li>
+                <li>앱이 없으면 스토어로 이동합니다</li>
+                <li>iOS는 실제 기기에서만 테스트 가능합니다</li>
+                <li>Android는 에뮬레이터에서도 테스트 가능합니다</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 사용자 에이전트 감지
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        const isAndroid = /android/i.test(userAgent);
+        const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+        // 앱 URL 스킴
+        const APP_SCHEME = 'phoenixdarts://app_link';
+        const UNIVERSAL_LINK = 'https://bowonlee.github.io/webviewTest/app_link';
+
+        // 스토어 URL
+        const ANDROID_STORE = 'https://play.google.com/store/apps/details?id=com.hong.v3';
+        const IOS_STORE = 'https://apps.apple.com/app/phoenixdarts/id1234567890'; // 실제 앱 ID로 변경 필요
+
+        let appOpened = false;
+        let countdown = 3;
+
+        function updateStatus(message, type) {
+            const statusEl = document.getElementById('status');
+            statusEl.className = `status ${type}`;
+            statusEl.innerHTML = `<p>${message}</p>`;
+        }
+
+        function showButtons() {
+            document.getElementById('buttons').style.display = 'block';
+            document.getElementById('status').style.display = 'none';
+        }
+
+        function startCountdown() {
+            const countdownContainer = document.getElementById('countdown-container');
+            const countdownEl = document.getElementById('countdown');
+
+            countdownContainer.style.display = 'block';
+            document.getElementById('status').style.display = 'none';
+
+            const interval = setInterval(() => {
+                countdown--;
+                countdownEl.textContent = countdown;
+
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                    tryOpenApp();
+                }
+            }, 1000);
+        }
+
+        function tryOpenApp() {
+            const now = Date.now();
+
+            if (isIOS) {
+                // iOS Universal Link 시도
+                window.location.href = UNIVERSAL_LINK;
+
+                // 2초 후에도 페이지에 있으면 스토어로 이동
+                setTimeout(() => {
+                    if (!appOpened && Date.now() - now < 2500) {
+                        updateStatus('앱을 찾을 수 없습니다. 스토어로 이동합니다.', 'error');
+                        setTimeout(() => {
+                            window.location.href = IOS_STORE;
+                        }, 1000);
+                    }
+                }, 2000);
+            } else if (isAndroid) {
+                // Android App Link 시도
+                window.location.href = UNIVERSAL_LINK;
+
+                // 2초 후에도 페이지에 있으면 스토어로 이동
+                setTimeout(() => {
+                    if (!appOpened && Date.now() - now < 2500) {
+                        updateStatus('앱을 찾을 수 없습니다. 스토어로 이동합니다.', 'error');
+                        setTimeout(() => {
+                            window.location.href = ANDROID_STORE;
+                        }, 1000);
+                    }
+                }, 2000);
+            } else {
+                updateStatus('모바일 기기에서 접속해주세요.', 'error');
+                showButtons();
+            }
+        }
+
+        // 페이지 가시성 변경 감지 (앱이 열렸는지 확인)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                appOpened = true;
+            }
+        });
+
+        // 버튼 이벤트 핸들러
+        document.getElementById('openApp')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            tryOpenApp();
+        });
+
+        document.getElementById('openStore')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (isAndroid) {
+                window.location.href = ANDROID_STORE;
+            } else if (isIOS) {
+                window.location.href = IOS_STORE;
+            }
+        });
+
+        // 페이지 로드 시 자동 실행
+        window.addEventListener('load', () => {
+            if (isAndroid || isIOS) {
+                updateStatus('앱 확인 완료!', 'success');
+                setTimeout(startCountdown, 500);
+            } else {
+                updateStatus('데스크톱에서는 수동으로 테스트하세요.', 'error');
+                showButtons();
+            }
+        });
+    </script>
+</body>
+
+</html>
