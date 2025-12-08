@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/webviewTest/static/css/main.40e46b9e.css",
-    "main.js": "/webviewTest/static/js/main.e9ecce31.js",
+    "main.css": "/webviewTest/static/css/main.0485c5c9.css",
+    "main.js": "/webviewTest/static/js/main.2ede1320.js",
     "static/js/453.250a9a36.chunk.js": "/webviewTest/static/js/453.250a9a36.chunk.js",
     "static/media/KaTeX_AMS-Regular.ttf": "/webviewTest/static/media/KaTeX_AMS-Regular.853be92419a6c3766b9a.ttf",
     "static/media/KaTeX_Main-Regular.ttf": "/webviewTest/static/media/KaTeX_Main-Regular.9eba1d77abcf2aa6e94e.ttf",
@@ -64,12 +64,12 @@
     "static/media/KaTeX_Size3-Regular.woff": "/webviewTest/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/webviewTest/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/webviewTest/index.html",
-    "main.40e46b9e.css.map": "/webviewTest/static/css/main.40e46b9e.css.map",
-    "main.e9ecce31.js.map": "/webviewTest/static/js/main.e9ecce31.js.map",
+    "main.0485c5c9.css.map": "/webviewTest/static/css/main.0485c5c9.css.map",
+    "main.2ede1320.js.map": "/webviewTest/static/js/main.2ede1320.js.map",
     "453.250a9a36.chunk.js.map": "/webviewTest/static/js/453.250a9a36.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.40e46b9e.css",
-    "static/js/main.e9ecce31.js"
+    "static/css/main.0485c5c9.css",
+    "static/js/main.2ede1320.js"
   ]
 }
