@@ -1,0 +1,19 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "YOUR_TEAM_ID.com.hi.dartmain",
+        "paths": [
+          "/webviewTest/app_link",
+          "/webviewTest/app_link/*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "YOUR_TEAM_ID.com.hi.dartmain"
+    ]
+  }
+}
