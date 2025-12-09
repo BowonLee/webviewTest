@@ -1,0 +1,19 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "W765JMX9K4.com.hi.dartmain",
+        "paths": [
+          "/app",
+          "/app/*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "W765JMX9K4.com.hi.dartmain"
+    ]
+  }
+}

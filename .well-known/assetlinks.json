@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.hong.v3",
+            "sha256_cert_fingerprints": [
+                "B6:7A:80:52:DF:79:86:E2:3B:28:05:D0:3C:38:99:84:1B:CE:04:56:DC:83:15:71:34:1B:96:D7:3C:65:FE:0E"
+            ]
+        }
+    }
+]
