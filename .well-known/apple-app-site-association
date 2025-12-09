@@ -5,6 +5,7 @@
       {
         "appID": "W765JMX9K4.com.hi.dartmain",
         "paths": [
+          "/webviewTest/*",
           "/app",
           "/app/*"
         ]
