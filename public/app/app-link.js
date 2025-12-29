@@ -3,8 +3,8 @@
 
   // 앱 설정
   const APP_SCHEME = 'phoenixdarts://';
-  const APP_PACKAGE = 'com.phoenixdarts.app';
-  const IOS_APP_ID = '123456789'; // 실제 App ID로 변경 필요
+  const APP_PACKAGE = 'com.hong.v3';
+  const IOS_APP_ID = '830083294'; // 실제 App ID로 변경 필요
 
   /**
    * URL 파라미터 파싱
@@ -89,32 +89,84 @@
   }
 
   /**
-   * 인앱 브라우저 감지
-   * @returns {boolean} 인앱 브라우저 여부
+   * 인앱 브라우저 감지 및 타입 반환
+   * @returns {string|null} 인앱 브라우저 타입 또는 null
    */
-  function isInAppBrowser() {
+  function detectInAppBrowser() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
 
     // 카카오톡 인앱 브라우저
     if (ua.match(/KAKAOTALK/i)) {
-      return true;
+      return 'kakao';
     }
 
     // 네이버 인앱 브라우저
     if (ua.match(/NAVER/i)) {
-      return true;
+      return 'naver';
     }
 
     // 페이스북 인앱 브라우저
     if (ua.match(/FBAN|FBAV/i)) {
-      return true;
+      return 'facebook';
     }
 
     // 인스타그램 인앱 브라우저
     if (ua.match(/Instagram/i)) {
+      return 'instagram';
+    }
+
+    // 라인 인앱 브라우저
+    if (ua.match(/Line/i)) {
+      return 'line';
+    }
+
+    return null;
+  }
+
+  /**
+   * 인앱 브라우저 여부 확인
+   * @returns {boolean}
+   */
+  function isInAppBrowser() {
+    return detectInAppBrowser() !== null;
+  }
+
+  /**
+   * 인앱 브라우저에서 외부 브라우저로 열기
+   * @returns {boolean} 외부 브라우저 실행 성공 여부
+   */
+  function openInExternalBrowser() {
+    const inAppType = detectInAppBrowser();
+    const platform = detectPlatform();
+    const currentURL = window.location.href;
+
+    // 카카오톡
+    if (inAppType === 'kakao') {
+      if (platform === 'ios') {
+        // iOS 카카오톡: 외부 브라우저로 자동 실행
+        location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(currentURL);
+        return true;
+      } else if (platform === 'android') {
+        // Android 카카오톡: Intent로 브라우저 선택
+        location.href = 'intent://' + location.host + location.pathname + location.search + '#Intent;scheme=https;action=android.intent.action.VIEW;end';
+        return true;
+      }
+    }
+
+    // 네이버
+    if (inAppType === 'naver') {
+      // 네이버 앱에서 외부 브라우저로 열기
+      location.href = 'naversearchapp://inappbrowser?url=' + encodeURIComponent(currentURL) + '&target=new';
       return true;
     }
 
+    // 라인
+    if (inAppType === 'line') {
+      location.href = 'line://openInAppBrowser?url=' + encodeURIComponent(currentURL);
+      return true;
+    }
+
+    // 페이스북, 인스타그램 등은 자동 전환 불가
     return false;
   }
 
@@ -155,12 +207,6 @@
       return;
     }
 
-    // 인앱 브라우저 감지
-    if (isInAppBrowser()) {
-      showExternalBrowserGuide();
-      // 인앱 브라우저에서도 시도는 함
-    }
-
     const { pathname, params } = parseURL();
     const deepLink = generateDeepLink(pathname, params, platform);
     const storeURL = getStoreURL(platform);
@@ -190,6 +236,31 @@
     if (platform === 'other') {
       showDesktopMessage();
       return;
+    }
+
+    // 인앱 브라우저 감지 및 외부 브라우저로 자동 전환
+    const inAppType = detectInAppBrowser();
+    if (inAppType) {
+      // URL 파라미터로 이미 리다이렉트된 상태인지 확인
+      const urlParams = new URLSearchParams(window.location.search);
+      const fromExternal = urlParams.get('_external');
+
+      if (!fromExternal) {
+        // 외부 브라우저로 열기 시도
+        const opened = openInExternalBrowser();
+
+        if (!opened) {
+          // 자동 전환 실패 시 안내 메시지 표시
+          showExternalBrowserGuide();
+        }
+
+        // 외부 브라우저 전환 실패를 대비해 버튼 이벤트는 유지
+      } else {
+        // 외부 브라우저에서 열린 경우 자동으로 앱 실행
+        setTimeout(() => {
+          openAppOrStore();
+        }, 500);
+      }
     }
 
     // 버튼 클릭 이벤트
