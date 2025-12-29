@@ -3,8 +3,8 @@
 
   // 앱 설정
   const APP_SCHEME = 'phoenixdarts://';
-  const APP_PACKAGE = 'com.phoenixdarts.app';
-  const IOS_APP_ID = '123456789'; // 실제 App ID로 변경 필요
+  const APP_PACKAGE = 'com.hong.v3';
+  const IOS_APP_ID = '830083294'; // 실제 App ID로 변경 필요
 
   /**
    * URL 파라미터 파싱
