@@ -1,16 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
-import MyComponent from './temp';
 import MathProblemDisplay from './components/MathProblem';
+import AppPage from './pages/AppPage';
+
 interface MathProblem {
   code: string;
   problem: string;
   highlights: string[];
   answers?: string[];
 }
-
-
 
 const mathProblems: MathProblem[] = [
   // {
@@ -47,30 +47,41 @@ const mathProblems: MathProblem[] = [
   //     " 14"
   //   ]
   // }
-]
-function App() {
+];
 
-  
-
+// Math Problems Home Component
+const MathProblemsHome: React.FC = () => {
   return (
-    <div className="min-h-screen p-8 pb-20 bg-gray-100 text-black" style={{backgroundColor: 'beige'}}>
+    <div className="min-h-screen p-8 pb-20 bg-gray-100 text-black" style={{ backgroundColor: 'beige' }}>
       <main className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-8 text-center">Math Problems</h1>
         <div className="bg-white shadow-md rounded-lg p-6">
           {mathProblems.map((problem, index) => (
             <div key={index} className="w-[400px] mx-auto text-left mb-32 last:mb-0">
               <div className="text-sm text-gray-500 mb-2">관리 코드: {problem.code}</div>
-              <MathProblemDisplay 
-                problem={problem.problem} 
+              <MathProblemDisplay
+                problem={problem.problem}
                 highlights={problem.highlights}
-                answers={problem.answers} 
+                answers={problem.answers}
               />
             </div>
           ))}
         </div>
       </main>
-
     </div>
+  );
+};
+
+function App() {
+  return (
+    <HelmetProvider>
+      <Router basename="/webviewTest">
+        <Routes>
+          <Route path="/" element={<MathProblemsHome />} />
+          <Route path="/app" element={<AppPage />} />
+        </Routes>
+      </Router>
+    </HelmetProvider>
   );
 }
 
