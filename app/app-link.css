@@ -75,16 +75,16 @@ body {
 /* 버튼 */
 .app-link-button {
   border-radius: 8px;
+  display: flex;
   background: var(--Semantic-Secondary-Gradient-Normal, linear-gradient(90deg, #DA022E 0%, #E86933 100%));
   color: white;
   border: none;
   border-radius: 12px;
-  padding: 16px 48px;
+  padding: 14px 16px;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  gap: 12px;
   -webkit-tap-highlight-color: transparent;
 }
 
