@@ -20,19 +20,22 @@ body {
 
 
 /* 컨테이너 */
+/* 컨테이너 */
 .app-link-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
+  justify-content: flex-start;
+  height: 100vh;
+  padding: 64px 20px 40px 20px;
+  /* 상:64, 하:40, 좌우:20 고정 */
   background-image: url('../assets/applink_bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
-  /* 절대 위치 자식 기준 */
+  box-sizing: border-box;
+  overflow-y: auto;
+  /* 화면 작을 때 스크롤 */
 }
 
 /* 앱 아이콘 */
@@ -57,21 +60,23 @@ body {
 }
 
 .app-icon-top {
-  position: absolute;
-  top: 64px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static;
+  margin: 0 auto;
+  transform: none;
   width: 176px;
   height: 28px;
+  flex-shrink: 0;
 }
 
 /* 메인 텍스트 래퍼 */
 .main-text-wrapper {
-  position: absolute;
-  top: 184px;
-  left: 19px;
+  position: static;
+  margin-top: 8vh;
+  /* 가변 간격 */
+  width: 100%;
   text-align: left;
   z-index: 5;
+  flex-shrink: 0;
 }
 
 .main-text-wrapper p:first-child {
@@ -114,14 +119,14 @@ body {
 
 /* 버튼 래퍼 */
 .button-wrapper {
-  position: absolute;
-  bottom: 40px;
-  left: 20px;
-  right: 20px;
-  width: auto;
+  position: relative;
+  margin-top: auto;
+  /* 하단으로 밀착 */
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-shrink: 0;
 }
 
 /* 링크 퍼슨 이미지 */
