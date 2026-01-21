@@ -18,6 +18,7 @@ body {
   color: #333;
 }
 
+
 /* 컨테이너 */
 .app-link-container {
   display: flex;
@@ -30,6 +31,8 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
+  /* 절대 위치 자식 기준 */
 }
 
 /* 앱 아이콘 */
@@ -53,6 +56,43 @@ body {
   object-fit: cover;
 }
 
+.app-icon-top {
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 176px;
+  height: 28px;
+}
+
+/* 메인 텍스트 래퍼 */
+.main-text-wrapper {
+  position: absolute;
+  top: 184px;
+  left: 19px;
+  text-align: left;
+  z-index: 5;
+}
+
+.main-text-wrapper p:first-child {
+  color: #FFF;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px;
+  margin-bottom: 8px;
+}
+
+.main-text-wrapper p:last-child {
+  color: rgba(255, 255, 255, 0.72);
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
 /* 앱 정보 */
 .app-info {
   text-align: center;
@@ -72,8 +112,37 @@ body {
   line-height: 1.5;
 }
 
+/* 버튼 래퍼 */
+.button-wrapper {
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+  right: 20px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 링크 퍼슨 이미지 */
+.link-person {
+  position: absolute;
+  top: 0;
+  /* 래퍼 상단(버튼 상단) 기준 */
+  right: 22px;
+  width: 140px;
+  height: auto;
+  margin-bottom: 0;
+  z-index: 0;
+  transform: translateY(-85%);
+  /* 이미지의 85%만큼 위로 이동 (15%는 버튼 뒤에) */
+}
+
 /* 버튼 */
 .app-link-button {
+  width: 100%;
+  position: relative;
+  z-index: 1;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -87,7 +156,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   gap: 12px;
-  align-self: stretch;
+  /* align-self: stretch; -> wrapper 내에서는 width: 100% 사용 */
   text-align: center;
   -webkit-tap-highlight-color: transparent;
 }
@@ -107,8 +176,7 @@ body {
   font-size: 18px;
   font-weight: 600;
   line-height: 28px;
-
-
+  margin-top: 12px;
   color: white;
   background-color: transparent;
   border: none;
