@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   // 앱 설정
@@ -267,6 +267,26 @@
     const button = document.getElementById('app-link-button');
     if (button) {
       button.addEventListener('click', openAppOrStore);
+    }
+
+    // 앱 설치 버튼 클릭 이벤트
+    const downloadButton = document.getElementById('app-download-button');
+    if (downloadButton) {
+      downloadButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        const platform = detectPlatform();
+
+        // 데스크톱 처리
+        if (platform === 'other') {
+          showDesktopMessage();
+          return;
+        }
+
+        const storeURL = getStoreURL(platform);
+        if (storeURL) {
+          window.location.href = storeURL;
+        }
+      });
     }
   }
 

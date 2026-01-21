@@ -76,6 +76,8 @@ body {
 .app-link-button {
   border-radius: 8px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   background: var(--Semantic-Secondary-Gradient-Normal, linear-gradient(90deg, #DA022E 0%, #E86933 100%));
   color: white;
   border: none;
@@ -85,6 +87,8 @@ body {
   font-weight: 600;
   cursor: pointer;
   gap: 12px;
+  align-self: stretch;
+  text-align: center;
   -webkit-tap-highlight-color: transparent;
 }
 
