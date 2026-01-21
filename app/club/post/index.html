@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phoenix Darts 게시글</title>
+  <title>Phoenix Darts 동호회 게시글</title>
 
   <!-- Open Graph 태그 -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Phoenix Darts 게시글">
-  <meta property="og:description" content="동호회 게시글을 확인하세요">
+  <meta property="og:title" content="Phoenix Darts 동호회 게시글">
+  <meta property="og:description" content="동호회 게시글을 확인하세요.">
   <meta property="og:image" content="https://bowonlee.github.io/webviewTest/og-image.png">
   <meta property="og:url" content="https://bowonlee.github.io/webviewTest/app/club/post">
+  <meta property="og:site_name" content="Phoenix Darts">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Phoenix Darts 게시글">
-  <meta name="twitter:description" content="동호회 게시글을 확인하세요">
+  <meta name="twitter:title" content="Phoenix Darts 동호회 게시글">
+  <meta name="twitter:description" content="동호회 게시글을 확인하세요.">
   <meta name="twitter:image" content="https://bowonlee.github.io/webviewTest/og-image.png">
 
   <!-- 스타일 -->
   <link rel="stylesheet" href="../../app-link.css">
 </head>
+
 <body>
   <div class="app-link-container">
-    <!-- 앱 아이콘 -->
-    <div class="app-icon">
-      📝
+    <img src="../../../assets/logo_phoenixdarts_white.png" alt="AppIconTop" class="app-icon-top">
+
+    <div class="main-text-wrapper">
+      <p>피닉스다트로 <br />이동하고있어요</p>
+      <p>화면이 멈췄다면<br />아래 버튼을 눌러 직접 이동해 보세요.</p>
     </div>
-
-    <!-- 앱 정보 -->
-    <div class="app-info">
-      <h1>동호회 게시글</h1>
-      <p>동호회 게시글을 확인하세요</p>
+    <!-- 앱으로 이동 버튼 래퍼 -->
+    <div class="button-wrapper">
+      <img src="../../../assets/link_person.png" alt="AppIcon" class="link-person">
+      <button id="app-link-button" class="app-link-button">
+        PHOENIXDARTS 앱 열기
+      </button>
+      <button id="app-download-button" class="app-download-button">
+        앱 설치 바로가기
+      </button>
     </div>
-
-    <!-- 앱으로 이동 버튼 -->
-    <button id="app-link-button" class="app-link-button">
-      게시글 보기
-    </button>
-
     <!-- 인앱 브라우저 안내 메시지 (기본 숨김) -->
     <div id="external-browser-message" class="external-browser-message">
       <p><strong>인앱 브라우저에서는 앱 실행이 제한될 수 있습니다.</strong></p>
@@ -49,4 +52,5 @@
   <!-- JavaScript -->
   <script src="../../app-link.js"></script>
 </body>
+
 </html>
