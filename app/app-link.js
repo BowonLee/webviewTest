@@ -74,6 +74,7 @@
       const fallback = `S.browser_fallback_url=https://play.google.com/store/apps/details?id=${APP_PACKAGE};`;
       const end = 'end';
 
+      console.log(`${base}${scheme}${pkg}${fallback}${end}`);
       return `${base}${scheme}${pkg}${fallback}${end}`;
     }
 
