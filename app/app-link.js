@@ -51,8 +51,14 @@
    * @returns {string} 생성된 딥링크
    */
   function generateDeepLink(pathname, params, platform) {
-    // pathname에서 /app/ 제거하여 앱 경로 생성
-    const appPath = pathname.replace('/app/', '').replace('/app', '');
+    // pathname에서 /app/을 기준으로 분리하여 실제 앱 경로 추출
+    const parts = pathname.split('/app/');
+    let appPath = parts.length > 1 ? parts[1] : pathname;
+
+    // 앞쪽 슬래시 제거 (scheme:// 뒤에 바로 붙기 위해)
+    if (appPath.startsWith('/')) {
+      appPath = appPath.substring(1);
+    }
 
     // query string 생성
     const queryString = new URLSearchParams(params).toString();
