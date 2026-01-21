@@ -65,6 +65,7 @@
 
     if (platform === 'ios') {
       // iOS Custom URL Scheme
+      console.log(`${APP_SCHEME}${appPath}${queryString ? '?' + queryString : ''}`);
       return `${APP_SCHEME}${appPath}${queryString ? '?' + queryString : ''}`;
     } else if (platform === 'android') {
       // Android Intent URL with fallback
